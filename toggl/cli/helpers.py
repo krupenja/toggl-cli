@@ -86,7 +86,7 @@ def entity_detail(cls, spec, field_lookup=('id', 'name',), primary_field='name',
     for key, value in sorted(entity_dict.items()):
         if obj.get('header'):
             entity_string += '\n{}: {}'.format(
-                click.style(key.replace('_', ' ').capitalize(), fg='white', dim=1),
+                click.style(key.replace('_', ' ').capitalize(), fg='green'),
                 '' if value is None else value
             )
         else:
@@ -95,7 +95,7 @@ def entity_detail(cls, spec, field_lookup=('id', 'name',), primary_field='name',
     click.echo("""{} {}
 {}""".format(
         click.style(getattr(entity, primary_field, ''), fg='green'),
-        click.style('#' + str(entity.id), fg='green', dim=1),
+        click.style('#' + str(entity.id), fg='blue'),
         entity_string[1:]))
 
 
