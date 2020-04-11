@@ -21,14 +21,14 @@ def entity_listing(cls, fields=('id', 'name',), obj=None):  # type: (typing.Unio
 
     if obj.get('simple'):
         if obj.get('header'):
-            click.echo('\t'.join([click.style(field.capitalize(), fg='white', dim=1) for field in fields]))
+            click.echo('\t'.join([click.style(field.capitalize(), fg='blue') for field in fields]))
 
         for entity in entities:
             click.echo('\t'.join([str(entity.__fields__[field].format(getattr(entity, field, ''))) for field in fields]))
         return
 
     table = PrettyTable()
-    table.field_names = [click.style(field.capitalize(), fg='white', dim=1) for field in fields]
+    table.field_names = [click.style(field.capitalize(), fg='blue') for field in fields]
     table.header = obj.get('header')
     table.border = False
     table.align = 'l'
@@ -86,7 +86,7 @@ def entity_detail(cls, spec, field_lookup=('id', 'name',), primary_field='name',
     for key, value in sorted(entity_dict.items()):
         if obj.get('header'):
             entity_string += '\n{}: {}'.format(
-                click.style(key.replace('_', ' ').capitalize(), fg='white', dim=1),
+                click.style(key.replace('_', ' ').capitalize(), fg='blue'),
                 '' if value is None else value
             )
         else:
@@ -95,7 +95,7 @@ def entity_detail(cls, spec, field_lookup=('id', 'name',), primary_field='name',
     click.echo("""{} {}
 {}""".format(
         click.style(getattr(entity, primary_field, ''), fg='green'),
-        click.style('#' + str(entity.id), fg='green', dim=1),
+        click.style('#' + str(entity.id), fg='green'),
         entity_string[1:]))
 
 
